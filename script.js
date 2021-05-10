@@ -10,14 +10,7 @@ let lista = document.querySelector('#lista');
 // card
 let card = document.querySelector('.card');
 
-let tarefas = [
-    'Ler livro',
-    'Iniciar projeto',
-    'Fazer devocional',
-    'Movie´s friends',
-    'Reunião vendas'
-
-];
+let tarefas =JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function renderizarTarefas(){
     // Limpar a listagem de items antes de renderizar novamente a tela
@@ -66,6 +59,9 @@ if (novaTarefa != ''){
      // Limpar mensagens de erro (spans)
      removerSpans();
 
+    // Salva os novos dados no banco de dados
+    salvarDadosNoStorage();
+
 }else{
     // Limpar mensagens de erro (spans)
     removerSpans();
@@ -95,7 +91,13 @@ function deletarTarefa(tar){
 
     // renderizar novamente a tela
    renderizarTarefas();
+
+   // Salva os novos dados no banco de dados
+   salvarDadosNoStorage();
 }
 
-
+function salvarDadosNoStorage(){
+    // Todo navegador web possui esta capacidade
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
 
