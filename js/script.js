@@ -7,6 +7,9 @@ let btn = document.querySelector('#botao');
 //3 - Referenciar a lista 
 let lista = document.querySelector('#lista');
 
+// card
+let card = document.querySelector('.card');
+
 let tarefas = [
     'Ler livro',
     'Iniciar projeto',
@@ -56,10 +59,12 @@ if (novaTarefa != ''){
     // Limpar o input
     input.value = '';
 
-   
+     // Limpar mensagens de erro (spans)
+     removerSpans();
 
 }else{
-    let card = document.querySelector('.card');
+    // Limpar mensagens de erro (spans)
+    removerSpans();
 
     let span = document.createElement('span');
     span.setAttribute('class', 'alert alert-warning');
@@ -72,7 +77,13 @@ if (novaTarefa != ''){
 
 }
 
+function removerSpans(){
+    let spans = document.querySelectorAll('span');
 
+    for (let i = 0; i < spans.length; i++){
+        card.removeChild(spans[i]);
+    }
+}
 
 
 
